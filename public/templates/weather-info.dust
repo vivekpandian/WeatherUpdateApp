@@ -3,7 +3,7 @@
 {<body}
     <h1>{@pre type="content" key="page_header"/}</h1>
 
-    <form method="GET" action="/weather">
+    <form method="GET" action="/weather" id="weather_form">
         {@pre type="content" key="select_label"/}
         <select id="city" name="city" onchange="this.form.submit()">
           {#city_options.cities}
@@ -18,10 +18,10 @@
     <br/>
 
     {#weather}
-    <table style="widtd:40%" border="1" cellspacing="1" cellpadding="1">
-        <tr>
+    <table style="width:40%" border="1" cellspacing="1" cellpadding="1" id="weather_info_table">
+        <tr id="city_row">
             <td>City</td>
-            <td>{city}</td>
+            <td id="city">{city}</td>
         </tr>
         <tr>
             <td>State</td>

@@ -5,7 +5,7 @@
  * Time: 8:21 PM
  * To change this template use File | Settings | File Templates.
  */
-
+'use strict';
 
 module.exports = function CityModel() {
     return {

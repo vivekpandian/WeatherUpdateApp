@@ -6,12 +6,26 @@ var http = require ('http');
 var CityModel = require ('../models/cities');
 var WeatherInfoModel = require('../models/weather-info');
 
+var weatherInfoModel = new WeatherInfoModel();
+var cityModel = new CityModel();
+
+/**
+ * Can This be done async ??
+ * @param city
+ * @returns {boolean}
+ */
+function isCityExists (city) {
+    var exists=false;
+    for (var i=0;i<cityModel.cities.length;i++) {
+        if (city === cityModel.cities[i].id) {
+            exists=true;
+            break;
+        }
+    }
+    return exists;
+}
 
 module.exports = function (app) {
-
-    var weatherInfoModel = new WeatherInfoModel();
-    var cityModel = new CityModel();
-
     app.get('/weather', function (request, response) {
         var options = {
             host: 'api.wunderground.com',
@@ -28,6 +42,9 @@ module.exports = function (app) {
         else {  //else let austin be the default city
             city = 'TX/Austin';
         }
+        if (!isCityExists(city)) {
+            return response.render ('weather-info',{'city':city,city_options:cityModel,error:''});
+        }
         //update the path with city value
         options.path = options.path + '/' + city + '.json';
         console.log ('options:' + JSON.stringify(options));
@@ -36,7 +53,7 @@ module.exports = function (app) {
             var responseString = '';
             var errorString = '';
             res.on('data', function (data) {
-                if (res.statusCode == 200) {   //if sucesss set the response string.
+                if (res.statusCode === 200) {   //if sucesss set the response string.
                     responseString += data;
                 }
                 else { // else set the error string
@@ -44,7 +61,7 @@ module.exports = function (app) {
                 }
             });
             res.on('error', function(err) {
-                console.log('problem with request: ' + err.message);
+                console.error ('problem with request: ' + err.message);
                 errorString += err.message;
             });
             res.on('end', function(){
