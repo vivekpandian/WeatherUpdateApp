@@ -1,0 +1,11 @@
+.build
+.idea
+*.log
+node_modules/*
+.bowerrc
+.editorconfig
+.jshintignore
+.jshintrc
+.nodemonignore
+.npmignore
+*.iml

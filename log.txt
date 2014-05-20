@@ -1,0 +1,10 @@
+
+> weatherupdateapp@0.1.0 start c:\Vivek\node_projects\WeatherUpdateApp
+> node index.js
+
+Listening on 8000
+query:{}
+options:{"host":"api.wunderground.com","path":"/api/5d10f470ccd7c799/geolookup/conditions/q/TX/Austin.json","method":"GET"}
+weather:[object Object]
+127.0.0.1 - - [Mon, 19 May 2014 22:42:48 GMT] "GET /weather HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.137 Safari/537.36"
+STATUS: 200

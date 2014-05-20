@@ -1,0 +1,90 @@
+{>"layouts/master" /}
+
+{<body}
+    <h1>{@pre type="content" key="page_header"/}</h1>
+
+    <form method="GET" action="/weather">
+        {@pre type="content" key="select_label"/}
+        <select id="city" name="city" onchange="this.form.submit()">
+          {#city_options.cities}
+            <option value="{id}" {@eq key=id value=city}  selected="true"{/eq} >
+             {value}
+            </option>
+          {/city_options.cities}
+        </select>
+    </form>
+
+    <br/>
+    <br/>
+
+    {#weather}
+    <table style="widtd:40%" border="1" cellspacing="1" cellpadding="1">
+        <tr>
+            <td>City</td>
+            <td>{city}</td>
+        </tr>
+        <tr>
+            <td>State</td>
+            <td>{state}</td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>{country}</td>
+        </tr>
+        <tr>
+            <td>Zip</td>
+            <td>{zip}</td>
+        </tr>
+        <tr>
+            <td>Observation Time</td>
+            <td>{observation_time}</td>
+        </tr>
+        <tr>
+            <td>Local Time</td>
+            <td>{local_time}</td>
+        </tr>
+        <tr>
+            <td>Weather</td>
+            <td>{weather}</td>
+        </tr>
+        <tr>
+            <td>Temperature</td>
+            <td>{temperature}</td>
+        </tr>
+        <tr>
+            <td>Relative Humidity</td>
+            <td>{relative_humidity}</td>
+        </tr>
+        <tr>
+            <td>Wind</td>
+            <td>{wind}</td>
+        </tr>
+        <tr>
+            <td>Dew Point</td>
+            <td>{dewpoint}</td>
+        </tr>
+        <tr>
+            <td>Heat</td>
+            <td>{heat}</td>
+        </tr>
+        <tr>
+            <td>Windchill</td>
+            <td>{windchill}</td>
+        </tr>
+        <tr>
+            <td>Feels Like</td>
+            <td>{feelslike}</td>
+        </tr>
+        <tr>
+            <td>Visibility</td>
+            <td>{visibility}</td>
+        </tr>
+        <tr>
+            <td>Precipitation</td>
+            <td>{precipitation}</td>
+        </tr>
+    </table>
+    {:else}
+        <h4>{@pre type="content" key="Invalid_City"/} {error}</h4>
+    {/weather}
+{/body}
